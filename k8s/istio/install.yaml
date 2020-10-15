@@ -1,6 +1,9 @@
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
+  addonComponents:
+    tracing:
+      enabled: true
   profile: default
   values:
     meshConfig:

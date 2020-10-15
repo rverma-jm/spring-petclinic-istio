@@ -1,6 +1,6 @@
 spring:
   application:
-    name: vets-service
+    name: vets-service.spring-petclinic
   profiles:
     active: kubernetes
   zipkin:

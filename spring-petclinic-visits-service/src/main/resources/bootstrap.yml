@@ -1,6 +1,6 @@
 spring:
   application:
-    name: visits-service
+    name: visits-service.spring-petclinic
   profiles:
     active: kubernetes
   zipkin:

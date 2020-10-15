@@ -19,6 +19,9 @@ data:
 
     # Logging
     logging.level.org.springframework: INFO
+    logging.level.org.springframework.web: DEBUG
+    logging.pattern.level: '[%X{traceId}/%X{spanId}] %-5p [%t] %C{2} - %m%n'
+
 
     # Metrics
     management:
@@ -65,10 +68,10 @@ data:
         sampler:
           probability: 1.0
         config:
-          # Allow the microservices to override the remote properties with their own System properties or config file
           allow-override: true
-          # Override configuration with any local property source
           override-none: true
+        scheduled:
+          skip-pattern: '.*KubernetesCatalogWatch'
       messages:
         basename: messages/messages
       cloud:
@@ -110,3 +113,13 @@ data:
         ttl: 60
         heap-size: 101
 
+#opentracing:
+#  jaeger:
+#    enable-b3-propagation: true
+#    enabled: true
+#    udp-sender:
+#      host: jaeger-agent.istio-system
+#  spring:
+#    cloud:
+#      scheduled:
+#        skip-pattern: '.*KubernetesCatalogWatch'

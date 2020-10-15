@@ -64,21 +64,23 @@
 			<artifactId>spring-cloud-starter-config</artifactId>
             <version>2.2.5.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-            <version>2.2.5.RELEASE</version>
-		</dependency>
+
+
+        <!-- Integrate with OpenTracing -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
             <version>2.2.5.RELEASE</version>
         </dependency>
-        <!-- Integrate with OpenTracing -->
         <dependency>
             <groupId>io.opentracing.brave</groupId>
             <artifactId>brave-opentracing</artifactId>
             <version>0.37.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <version>2.2.5.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.brave</groupId>

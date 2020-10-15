@@ -65,6 +65,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
             <version>2.2.5.RELEASE</version>
         </dependency>
@@ -86,6 +91,11 @@
             <artifactId>brave-opentracing</artifactId>
             <version>0.37.2</version>
         </dependency>
+        <!--<dependency>
+            <groupId>io.opentracing.contrib</groupId>
+            <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
+            <version>3.2.2</version>
+        </dependency>-->
 
 
         <!-- Third parties -->
