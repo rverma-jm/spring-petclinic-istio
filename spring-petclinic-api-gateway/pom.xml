@@ -91,12 +91,6 @@
             <artifactId>brave-opentracing</artifactId>
             <version>0.37.2</version>
         </dependency>
-        <!--<dependency>
-            <groupId>io.opentracing.contrib</groupId>
-            <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
-            <version>3.2.2</version>
-        </dependency>-->
-
 
         <!-- Third parties -->
 		<dependency>

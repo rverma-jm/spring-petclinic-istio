@@ -9,6 +9,8 @@ spring:
 ---
 spring:
   profiles: kubernetes
+  zipkin:
+    base-url: http://zipkin.istio-system:9411
   cloud:
     config:
       enabled: false
@@ -19,6 +21,18 @@ spring:
       config:
         enabled: true
         name: petclinic-config
+  sleuth:
+    baggage:
+      remote-fields:
+        - x-request-id
+        - x-b3-traceid
+        - x-b3-spanid
+        - x-b3-parentspanid
+        - x-b3-sampled
+        - x-b3-flags
+        - x-ot-span-context
+    scheduled:
+      skip-pattern: '.*KubernetesCatalogWatch'
 management:
   endpoint:
     restart:
