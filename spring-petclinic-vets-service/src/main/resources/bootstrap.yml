@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: vets-service
+  profiles:
+    active: kubernetes
+  zipkin:
+    base-url: http://zipkin.istio-system:9411
+
+---
+spring:
+  profiles: kubernetes
+  cloud:
+    config:
+      enabled: false
+    kubernetes:
+      reload:
+        strategy: restart-context
+        enabled: true
+      config:
+        enabled: true
+        name: petclinic-config
+management:
+  endpoint:
+    restart:
+      enabled: true

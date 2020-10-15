@@ -1,0 +1,12 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  profile: default
+  values:
+    meshConfig:
+      enableAutoMtls: true
+    gateways:
+      istio-ingressgateway:
+        type: NodePort
+    sidecarInjectorWebhook:
+      rewriteAppHTTPProbe: true

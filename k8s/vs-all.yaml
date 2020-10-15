@@ -1,0 +1,36 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: api-gw
+  namespace: spring-petclinic
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - "*"
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: api-vs
+  namespace: spring-petclinic
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - spring-petclinic/api-gw
+  http:
+    - name: "http"
+      match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            port:
+              number: 80
+            host: api-gateway

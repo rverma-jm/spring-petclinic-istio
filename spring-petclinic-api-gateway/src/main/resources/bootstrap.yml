@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    active: kubernetes
+  zipkin:
+    base-url: http://zipkin.istio-system:9411
+
+
+#  istio headers
+#  x-request-id
+#  x-b3-traceid
+#  x-b3-spanid
+#  x-b3-parentspanid
+#  x-b3-sampled
+#  x-b3-flags
+#  x-ot-span-context
+---
+spring:
+  profiles: kubernetes
+  cloud:
+    config:
+      enabled: false
+    kubernetes:
+      reload:
+        strategy: restart-context
+        enabled: true
+      config:
+        enabled: true
+        name: petclinic-config
+management:
+  endpoint:
+    restart:
+      enabled: true

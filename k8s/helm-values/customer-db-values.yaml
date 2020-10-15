@@ -1,0 +1,16 @@
+clusterDomain: customer
+
+root:
+  password: rootadmin
+ 
+db:
+  user: admin
+  password: clusteradmin
+  name: service_instance_db
+
+slave:
+  replicas: 0
+
+master:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
