@@ -22,6 +22,9 @@
 		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
 		<spring-boot.build-image.imageName>customers-service</spring-boot.build-image.imageName>
         <jib.maven-plugin-version>2.6.0</jib.maven-plugin-version>
+        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <assertj.version>3.11.1</assertj.version>
 	</properties>
 
 	<dependencies>
@@ -59,33 +62,25 @@
 		</dependency>
 
 		<!-- Spring Cloud -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
-            <version>2.2.5.RELEASE</version>
 		</dependency>
-
-
-        <!-- Integrate with OpenTracing -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
-            <version>2.2.5.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>io.opentracing.brave</groupId>
-            <artifactId>brave-opentracing</artifactId>
-            <version>0.37.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
-            <version>2.2.5.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-instrumentation-mysql8</artifactId>
-            <version>5.12.6</version>
         </dependency>
 
         <!-- Third parties -->
@@ -138,7 +133,6 @@
 				<dependency>
 					<groupId>org.springframework.cloud</groupId>
                     <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
-                    <version>1.1.6.RELEASE</version>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -188,5 +182,34 @@
 		</plugins>
 	</build>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

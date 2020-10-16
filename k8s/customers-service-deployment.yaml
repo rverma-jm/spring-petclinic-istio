@@ -5,6 +5,7 @@ metadata:
   annotations:
   labels:
     app: customers-service
+    version: v1
   name: customers-service
   namespace: spring-petclinic
 spec:
@@ -12,11 +13,15 @@ spec:
   selector:
     matchLabels:
       app: customers-service
+      version: v1
   strategy: {}
   template:
     metadata:
       labels:
         app: customers-service
+        version: v1
+      annotations:
+        kiali.io/dashboards: micrometer-1.1-jvm,micrometer-1.0.6-jvm-pool,envoy
     spec:
       containers:
       - image: spring-petclinic-customers-service:latest

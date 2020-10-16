@@ -1,16 +1,15 @@
 spring:
   application:
-    name: visits-service.spring-petclinic
+    name: visits-service
   profiles:
     active: kubernetes
-  zipkin:
-    base-url: http://zipkin.istio-system:9411
-
 ---
 spring:
   profiles: kubernetes
   zipkin:
     base-url: http://zipkin.istio-system:9411
+    service:
+      name: visits-service.spring-petclinic
   cloud:
     config:
       enabled: false

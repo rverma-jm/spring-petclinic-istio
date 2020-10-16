@@ -8,6 +8,8 @@ spring:
   profiles: kubernetes
   zipkin:
     base-url: http://zipkin.istio-system:9411
+    service:
+      name: api-gateway.spring-petclinic
   cloud:
     config:
       enabled: false

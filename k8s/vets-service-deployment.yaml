@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   labels:
     app: vets-service
+    version: v1
   name: vets-service
   namespace: spring-petclinic
 spec:
@@ -11,11 +12,15 @@ spec:
   selector:
     matchLabels:
       app: vets-service
+      version: v1
   strategy: {}
   template:
     metadata:
       labels:
         app: vets-service
+        version: v1
+      annotations:
+        kiali.io/dashboards: micrometer-1.1-jvm,micrometer-1.0.6-jvm-pool,envoy
     spec:
       containers:
       - image: spring-petclinic-vets-service:latest
