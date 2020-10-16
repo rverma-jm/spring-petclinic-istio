@@ -52,9 +52,6 @@ deploy:
         - "--create-namespace" 
   kubectl:
     manifests:
-    - k8s/istio/jaeger.yaml
-    - k8s/istio/kiali.yaml
-    - k8s/istio/prometheus.yaml
     - k8s/init-namespace/01-namespace.yaml
     - k8s/init-services/02-config-map.yaml
     - k8s/init-services/03-role.yaml
@@ -66,3 +63,5 @@ deploy:
     - k8s/customers-service-deployment.yaml
     - k8s/vets-service-deployment.yaml
     - k8s/visits-service-deployment.yaml
+    - k8s/istio/jaeger.yaml
+    - k8s/istio/prometheus.yaml

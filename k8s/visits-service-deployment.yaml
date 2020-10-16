@@ -20,6 +20,10 @@ spec:
         app: visits-service
         version: v1
       annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+        prometheus.io/path: "/actuator/prometheus"
         kiali.io/dashboards: micrometer-1.1-jvm,micrometer-1.0.6-jvm-pool,envoy
     spec:
       containers:

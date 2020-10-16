@@ -2,9 +2,17 @@ apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
   profile: default
+  meshConfig:
+    defaultConfig:
+      tracing:
+        sampling: 100
   values:
     gateways:
       istio-ingressgateway:
         type: NodePort
     sidecarInjectorWebhook:
       rewriteAppHTTPProbe: true
+    global:
+      tracer:
+        zipkin:
+          address: zipkin.istio-system.svc.cluster.local:9411

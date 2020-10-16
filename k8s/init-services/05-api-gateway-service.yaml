@@ -8,11 +8,46 @@ metadata:
   namespace: spring-petclinic
 spec:
   ports:
-  - name: "80"
+  - name: http
     port: 80
     targetPort: 8080
   selector:
     app: api-gateway
   type: ClusterIP
-status:
-  loadBalancer: {}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: api-gateway
+  namespace: spring-petclinic
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - "*"
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: api-gateway-vs
+  namespace: spring-petclinic
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - spring-petclinic/api-gateway
+  http:
+    - match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            port:
+              number: 80
+            host: api-gateway.spring-petclinic.svc.cluster.local
+

@@ -9,7 +9,7 @@ spring:
   zipkin:
     base-url: http://zipkin.istio-system:9411
     service:
-      name: customers-service..spring-petclinic
+      name: customers-service.spring-petclinic
   cloud:
     config:
       enabled: false

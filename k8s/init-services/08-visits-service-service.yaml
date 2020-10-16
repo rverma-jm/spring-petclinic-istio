@@ -8,10 +8,26 @@ metadata:
   namespace: spring-petclinic  
 spec:
   ports:
-  - name: "8080"
+  - name: http
     port: 8080
     targetPort: 8080
   selector:
     app: visits-service
-status:
-  loadBalancer: {}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: visits-service-vs
+  namespace: spring-petclinic
+spec:
+  hosts:
+    - "visits-service.spring-petclinic.svc.cluster.local"
+  http:
+    - match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            port:
+              number: 8080
+            host: visits-service.spring-petclinic.svc.cluster.local

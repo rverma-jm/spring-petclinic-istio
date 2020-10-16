@@ -42,30 +42,6 @@ data:
     - /etc/config/rules
     - /etc/config/alerts
     scrape_configs:
-    - job_name: api-gateway
-      metrics_path: /actuator/prometheus
-      static_configs:
-      - targets: ['api-gateway.spring-petclinic']
-
-    - job_name: customers-service
-      metrics_path: /actuator/prometheus
-      static_configs:
-      - targets: ['customers-service.spring-petclinic:8080']
-
-    - job_name: visits-service
-      metrics_path: /actuator/prometheus
-      static_configs:
-      - targets: ['visits-service.spring-petclinic:8080']
-
-    - job_name: vets-service
-      metrics_path: /actuator/prometheus
-      static_configs:
-      - targets: ['vets-service.spring-petclinic:8080']
-
-    - job_name: prometheus
-      static_configs:
-      - targets:
-        - localhost:9090
     - bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
       job_name: kubernetes-apiservers
       kubernetes_sd_configs:
