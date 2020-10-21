@@ -18,8 +18,11 @@ package org.springframework.samples.petclinic.api.boundary.web;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.slf4j.MDC;
 import org.springframework.cloud.client.circuitbreaker.ReactiveCircuitBreaker;
 import org.springframework.cloud.client.circuitbreaker.ReactiveCircuitBreakerFactory;
+import org.springframework.samples.petclinic.api.annotation.ExtendMDC;
+import org.springframework.samples.petclinic.api.annotation.MDCValue;
 import org.springframework.samples.petclinic.api.application.CustomersServiceClient;
 import org.springframework.samples.petclinic.api.application.VisitsServiceClient;
 import org.springframework.samples.petclinic.api.dto.OwnerDetails;
@@ -44,8 +47,9 @@ public class ApiGatewayController {
 
     private final VisitsServiceClient visitsServiceClient;
 
+    @ExtendMDC
     @GetMapping(value = "owners/{ownerId}")
-    public Mono<OwnerDetails> getOwnerDetails(final @PathVariable int ownerId) {
+    public Mono<OwnerDetails> getOwnerDetails(final @MDCValue("principal") @PathVariable int ownerId) {
         return customersServiceClient.getOwner(ownerId)
             .flatMap(owner ->
                 visitsServiceClient.getVisitsForPets(owner.getPetIds())

@@ -54,7 +54,8 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: kubernetes
+        - name: JAVA_TOOL_OPTIONS
+          value: "-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8081,suspend=n"
         ports:
         - containerPort: 8080
       restartPolicy: Always
-status: {}

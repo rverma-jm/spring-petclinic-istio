@@ -2,7 +2,7 @@ spring:
   application:
     name: api-gateway
   profiles:
-    active: kubernetes
+    active: default
 ---
 spring:
   profiles: kubernetes
@@ -30,8 +30,14 @@ spring:
         - x-b3-sampled
         - x-b3-flags
         - x-ot-span-context
+      remote-keys:
+        - principal
     scheduled:
       skip-pattern: '.*KubernetesCatalogWatch'
+    log:
+      slf4j:
+        correlation-fields: principal
+logging.pattern.level: '%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%X{principal}] [%X{X-B3-TraceId:-}] %m%n'
 management:
   endpoint:
     restart:
