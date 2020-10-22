@@ -3,23 +3,6 @@ spring:
     name: api-gateway
   profiles:
     active: default
----
-spring:
-  profiles: kubernetes
-  zipkin:
-    base-url: http://zipkin.istio-system:9411
-    service:
-      name: api-gateway.spring-petclinic
-  cloud:
-    config:
-      enabled: false
-    kubernetes:
-      reload:
-        strategy: restart-context
-        enabled: true
-      config:
-        enabled: true
-        name: petclinic-config
   sleuth:
     baggage:
       remote-fields:
@@ -37,7 +20,30 @@ spring:
     log:
       slf4j:
         correlation-fields: principal
-logging.pattern.level: '%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%X{principal}] [%X{X-B3-TraceId:-}] %m%n'
+  zipkin:
+    base-url: http://localhost:30967
+logging:
+  pattern:
+    console: "%clr(%d{HH:mm:ss}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) [%X{principal}-%X{X-B3-TraceId:-}] %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+customers-service-id: http://localhost:8081
+visits-service-id: http://localhost:8082
+---
+spring:
+  profiles: kubernetes
+  zipkin:
+    base-url: http://zipkin.istio-system:9411
+    service:
+      name: api-gateway.spring-petclinic
+  cloud:
+    config:
+      enabled: false
+    kubernetes:
+      reload:
+        strategy: restart-context
+        enabled: true
+      config:
+        enabled: true
+        name: petclinic-config
 management:
   endpoint:
     restart:
