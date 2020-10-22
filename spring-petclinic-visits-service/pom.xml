@@ -19,7 +19,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
-		<spring-boot.build-image.imageName>visits-service</spring-boot.build-image.imageName>
+		<spring-boot.build-image.imageName>jupitermoney/visits-service</spring-boot.build-image.imageName>
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <assertj.version>3.11.1</assertj.version>

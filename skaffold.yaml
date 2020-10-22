@@ -6,19 +6,19 @@ build:
   tagPolicy:
     sha256: {}
   artifacts:
-  - image: spring-petclinic-customers-service
+  - image: jupitermoney/spring-petclinic-customers-service
     context:  ./
     jib:
       project: spring-petclinic-customers-service
-  - image: spring-petclinic-visits-service
+  - image: jupitermoney/spring-petclinic-visits-service
     context:  ./
     jib:
       project: spring-petclinic-visits-service
-  - image: spring-petclinic-vets-service
+  - image: jupitermoney/spring-petclinic-vets-service
     context:  ./
     jib:
       project: spring-petclinic-vets-service
-  - image: spring-petclinic-api-gateway
+  - image: jupitermoney/spring-petclinic-api-gateway
     context:  ./
     jib:
       project: spring-petclinic-api-gateway

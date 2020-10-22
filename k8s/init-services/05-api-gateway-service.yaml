@@ -4,6 +4,9 @@ kind: Service
 metadata:
   labels:
     app: api-gateway
+  annotations:
+    kiali.io/api-spec: "/v3/api-docs"
+    kiali.io/api-type: "rest"
   name: api-gateway
   namespace: spring-petclinic
 spec:
